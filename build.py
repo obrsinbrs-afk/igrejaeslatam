@@ -3,6 +3,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup, Comment
 import json
 import shutil
+from render_testimonials import render_testimonials
 
 ROOT = Path(__file__).resolve().parent
 SOURCE = ROOT.parent
@@ -21,7 +22,7 @@ T = {
 'QUERO MEU EBOOK AGORA':'QUIERO MI EBOOK AHORA',
 'Acesso imediato · Garantia de 7 dias':'Acceso inmediato · Garantía de 7 días',
 '4.9/5':'4,9/5',
-'+2.000 leitores em todo o Brasil':'+2.000 lectores en todo Brasil',
+'+2.000 leitores em todo o Brasil':'+2.000 lectores',
 'Recomendado por catequistas':'Recomendado por catequistas',
 'Soa familiar?':'¿Te resulta familiar?',
 'Você quer ler a Bíblia… mas não sabe por onde começar':'Quieres leer la Biblia… pero no sabes por dónde empezar',
@@ -154,6 +155,7 @@ def build():
             untouched.append(k)
     if untouched:
         raise ValueError(f'Untranslated text: {untouched}')
+    render_testimonials(main.select_one('[data-section="testimonials"]'), ROOT)
     main['data-offer-usd'] = '9.90'
     offer = main.select_one('#comprar')
     item_values = [20, 15, 10, 8, 7]

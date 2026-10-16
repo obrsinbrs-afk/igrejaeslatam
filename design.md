@@ -20,4 +20,6 @@ Registrar un nuevo Site privado y publicarlo con Sites para revisión, sin modif
 
 ## Verificación
 
+Actualización del carrusel: encabezado «Católicos de todo el mundo ya comenzaron», navegación manual por flechas, puntos, teclado y desplazamiento táctil. Ocho tarjetas de ejemplo con nombre latino y ciudad/país debajo. Mientras no se reciban relatos verificables, marcar cada tarjeta como «Ejemplo ilustrativo» y explicar que nombres y relatos son ficticios. No reasignar los testimonios brasileños a otras personas o países.
+
 Revisar visualmente en escritorio y móvil, confirmar las cuatro artes, ausencia de textos portugueses en la página de venta, imágenes sin errores, navegación a oferta, FAQ y destino de compra. Comprobar que no haya desbordamiento horizontal. El checkout externo y el PDF del ebook quedan fuera de la traducción de esta página.

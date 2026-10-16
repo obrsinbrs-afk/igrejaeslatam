@@ -22,7 +22,7 @@ La estimación local consulta el país de la IP con GeoJS y los tipos de cambio 
 
 Fuentes: https://www.geojs.io/docs/v1/endpoints/country/ ; https://www.exchangerate-api.com/docs/free ; https://github.com/unicode-org/cldr-json/blob/main/cldr-json/cldr-core/supplemental/currencyData.json . La página incluye la atribución requerida al proveedor de cotizaciones. La conversión es orientativa; no fija un precio de cobro local.
 
-Los nombres y las ciudades de los testimonios se conservan; son testimonios de Brasil traducidos al español.
+La sección internacional tiene un carrusel de 8 tarjetas con nombres y ciudades de Colombia, México, Costa Rica, Perú, Chile, Ecuador, Argentina y Guatemala. Las tarjetas actuales son ejemplos ficticios, identificados tanto en cada tarjeta como en la nota de la sección; no se presentan como testimonios verificados. Se editan en `testimonials.json`. Los relatos originales de Brasil se conservan como referencia en `testimonials-original.json` y en el HTML original.
 
 La página y sus imágenes están en español. El PDF del ebook y los bonos entregados por Hotmart no se proporcionaron en este encargo y no fueron traducidos. El propietario debe preparar esos archivos y configurar la oferta/checkout en español antes de usar esta versión para vender el producto en español. La página original y su dominio no se modificaron.
 

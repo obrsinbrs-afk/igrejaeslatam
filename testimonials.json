@@ -1,0 +1,53 @@
+{
+  "mode": "illustrative",
+  "cards": [
+    {
+      "name": "María Fernanda R.",
+      "city": "Bogotá",
+      "country": "Colombia",
+      "quote": "Buscaba una forma sencilla de acercarme a la Biblia. Tener el contexto de cada libro me ayuda a leer con más calma y a llevar la Palabra a mi oración."
+    },
+    {
+      "name": "José Luis M.",
+      "city": "Ciudad de México",
+      "country": "México",
+      "quote": "Me gusta leer un capítulo breve al terminar el día. Las explicaciones claras y la conexión con la Misa me ayudan a comprender lo que escucho los domingos."
+    },
+    {
+      "name": "Lucía Hernández",
+      "city": "San José",
+      "country": "Costa Rica",
+      "quote": "Quería compartir un momento de lectura con mi familia. Una guía breve, con una oración al final, nos da un punto de partida para conversar sobre nuestra fe."
+    },
+    {
+      "name": "Daniela Vargas",
+      "city": "Lima",
+      "country": "Perú",
+      "quote": "A veces no sabía por dónde empezar. Conocer el autor, el contexto y los temas de cada libro me permite seguir la lectura con un rumbo más claro."
+    },
+    {
+      "name": "Camila Torres",
+      "city": "Santiago",
+      "country": "Chile",
+      "quote": "Buscaba un material que pudiera leer desde el celular. El formato breve me ayuda a hacer espacio para la Palabra incluso en los días más ocupados."
+    },
+    {
+      "name": "Andrés Pérez",
+      "city": "Quito",
+      "country": "Ecuador",
+      "quote": "Me interesa conocer los 73 libros y su lugar en la historia de la salvación. Leerlos con la mirada de la Tradición da sentido a los detalles que antes pasaba por alto."
+    },
+    {
+      "name": "Valentina Gómez",
+      "city": "Buenos Aires",
+      "country": "Argentina",
+      "quote": "Quería comprender mejor los libros deuterocanónicos. Tener una explicación accesible y una invitación a orar me ayuda a acercarme a ellos sin sentirme perdida."
+    },
+    {
+      "name": "Sofía Castillo",
+      "city": "Ciudad de Guatemala",
+      "country": "Guatemala",
+      "quote": "Para mí es importante unir la lectura con la vida de fe. Encontrar referencias a la Liturgia y a los Padres de la Iglesia me invita a profundizar cada día."
+    }
+  ]
+}

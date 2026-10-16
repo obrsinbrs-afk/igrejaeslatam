@@ -1,0 +1,23 @@
+{
+  "mode": "original",
+  "cards": [
+    {
+      "name": "Maria Fernanda",
+      "city": "São Paulo",
+      "country": "Brasil",
+      "quote": "Leía la Biblia sin entenderla. Con Brote de Fe por fin tengo un orden y una guía católica que respeta la Tradición."
+    },
+    {
+      "name": "Carlos A.",
+      "city": "Belo Horizonte",
+      "country": "Brasil",
+      "quote": "Lo leo en el celular antes de dormir. Diez minutos al día y mi fe cambió. Vale mucho más de lo que cuesta."
+    },
+    {
+      "name": "Lúcia R.",
+      "city": "Curitiba",
+      "country": "Brasil",
+      "quote": "Se lo regalé a mi mamá y ahora rezamos juntas por WhatsApp. Es claro, breve y profundamente católico."
+    }
+  ]
+}
