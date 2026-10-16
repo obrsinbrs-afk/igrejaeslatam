@@ -176,7 +176,7 @@ def build():
     price_parts[1].string = '9'
     price_parts[2].clear()
     price_parts[2].append(BeautifulSoup('<span class="opacity-60">,</span>90', 'html.parser'))
-    conversion = BeautifulSoup('''<div class="local-price-box" aria-live="polite" aria-atomic="true"><p class="local-price-label">En tu moneda</p><p class="local-price" data-local-price data-price-state="loading">Calculando el equivalente en tu moneda…</p><p class="local-price-note">Valor aproximado según el tipo de cambio. El importe final se confirma al pagar.</p><p class="rate-attribution">Tipo de cambio: <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener noreferrer">ExchangeRate-API</a><span data-rate-date></span></p></div>''', 'html.parser')
+    conversion = BeautifulSoup('''<div class="local-price-box" aria-live="polite" aria-atomic="true"><p class="local-price-label">En tu moneda</p><p class="local-price" data-local-price data-price-state="loading">Calculando el equivalente en tu moneda…</p><p class="local-price-note">Valor aproximado según el tipo de cambio. El importe final se confirma al pagar.</p><p class="rate-date" data-rate-date hidden></p></div>''', 'html.parser')
     price_row.insert_after(conversion)
     alt = ['Ebook Brote de Fe: portada digital en español','Los 73 libros de la Biblia: beneficios de Brote de Fe','Ejemplo de lectura: Génesis en español','Lectora con el ebook Brote de Fe en español']
     files = ['01-portada.webp','02-beneficios.webp','04-genesis.webp','03-lectura.webp']
@@ -201,6 +201,7 @@ def build():
     for a in main.select('footer a'):
         a['href'] = {'/politicas/privacidade':'/politicas/privacidad/','/politicas/termos':'/politicas/terminos/','/politicas/reembolso':'/politicas/reembolso/'}[a['href']]
     main.select_one('nav')['aria-label'] = 'Políticas'
+    main.select_one('footer > div').append(BeautifulSoup('<p class="rate-credit">Cotizaciones de <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener noreferrer">ExchangeRate-API</a></p>', 'html.parser'))
     h1 = soup.new_tag('h1',attrs={'class':'sr-only'})
     h1.string = 'Brote de Fe — El camino de las 73 raíces'
     main.select_one('[data-section="hero"]').insert(0,h1)

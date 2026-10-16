@@ -113,7 +113,10 @@ export async function showLocalPrice(doc = document, options = {}) {
     }
     if (quote.updatedAt) {
       const date = new Intl.DateTimeFormat('es-419', { dateStyle: 'short', timeZone: 'UTC' }).format(quote.updatedAt);
-      doc.querySelectorAll('[data-rate-date]').forEach(el => { el.textContent = ` · ${date}`; });
+      doc.querySelectorAll('[data-rate-date]').forEach(el => {
+        el.textContent = `Cotización: ${date}`;
+        el.hidden = false;
+      });
     }
   } catch {
     for (const target of targets) {
