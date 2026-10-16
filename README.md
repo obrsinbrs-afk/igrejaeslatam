@@ -16,7 +16,7 @@ Para servir localmente: `python -m http.server 4173 --directory dist --bind 127.
 
 Oferta aprobada: ebook US$20,00 + bonos US$15,00, US$10,00, US$8,00 y US$7,00 = valor total US$60,00 (todos tachados). Precio de lanzamiento: US$9,90, pago único. La aclaración más reciente del propietario reemplaza la mención inicial de US$200.
 
-El propietario enviará posteriormente el enlace de la oferta de US$9,90. Hasta recibirlo se conserva el checkout original: https://pay.hotmart.com/U106054486T?checkoutMode=10. Cambiar el precio visible de la página no modifica el precio configurado en Hotmart.
+Checkout de la oferta de US$9,90 (constante `CHECKOUT_URL` en `build.py`): https://pay.hotmart.com/W107968094E?off=id8yz0yl&checkoutMode=10. Cambiar el precio visible de la página no modifica el precio configurado en Hotmart.
 
 La estimación local consulta el país de la IP con GeoJS y los tipos de cambio diarios de ExchangeRate-API. No usa GPS ni el idioma del navegador como sustituto del país. Los códigos de moneda por país provienen de Unicode CLDR. Solo se guarda el código del país durante 30 minutos y la tabla de cotizaciones por un máximo de 24 horas (o hasta la próxima actualización del proveedor). No se almacena la IP. Ante errores de red, datos inválidos o moneda no compatible se conserva US$9,90 sin inventar una conversión.
 

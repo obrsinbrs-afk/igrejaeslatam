@@ -139,6 +139,8 @@ FAQ = [
 'No. Está escrito en un lenguaje claro y reverente para que cualquier persona pueda comprenderlo dedicando unos minutos al día.',
 ]
 
+CHECKOUT_URL = 'https://pay.hotmart.com/W107968094E?off=id8yz0yl&checkoutMode=10'
+
 def build():
     soup = BeautifulSoup((ROOT / 'source.html').read_text(encoding='utf-8'), 'html.parser')
     main = soup.main.extract()
@@ -190,6 +192,8 @@ def build():
         button.name = 'a'
         button.attrs.pop('type',None)
         button['href'] = '#comprar'
+    for a in main.select('a[href*="pay.hotmart.com"]'):
+        a['href'] = CHECKOUT_URL
     for i, button in enumerate(main.select('[data-section="faq"] button')):
         button['type'] = 'button'
         button['aria-expanded'] = 'false'
