@@ -9,8 +9,8 @@ SOURCE = ROOT.parent
 OUT = ROOT / 'dist'
 T = {
 'Oferta de lançamento:':'Oferta de lanzamiento:',
-'Ebook completo com':'Ebook completo con',
-'50% de desconto':'50% de descuento',
+'Ebook completo com':'Ebook completo + 4 bonos por',
+'50% de desconto':'US$9,90',
 'Para católicos que querem entender a Bíblia':'Para católicos que quieren comprender la Biblia',
 'Um guia devocional claro, breve e fiel à Tradição — para que você pare de se sentir perdido e comece a ler a Palavra com confiança, incluindo os':'Una guía devocional clara, breve y fiel a la Tradición para que dejes de sentirte perdido y comiences a leer la Palabra con confianza, incluidos los',
 '7 livros que só a Bíblia católica preserva':'7 libros que conserva la Biblia Católica',
@@ -119,7 +119,7 @@ T = {
 'Comece hoje':'Comienza hoy',
 'A Palavra que nutriu 2.000 anos de santos — agora no seu celular':'La Palabra que alimentó a los santos durante 2.000 años, ahora en tu celular',
 'Por menos do preço de uma pizza, leve com você os 73 livros da Bíblia Católica com a sabedoria da Tradição.':'Por menos de lo que cuesta una pizza, lleva contigo los 73 libros de la Biblia Católica y la sabiduría de la Tradición.',
-'R$47,90 · pagamento único · acesso vitalício':'R$47,90 · pago único · acceso de por vida',
+'R$47,90 · pagamento único · acesso vitalício':'US$9,90 · pago único · acceso de por vida',
 'P.S.:':'P. D.:',
 'Lembre-se que você tem 7 dias de garantia total. Se não for para você, devolvemos cada centavo. A única coisa que você pode perder é a oportunidade de finalmente entender a Bíblia.':'Recuerda que tienes 7 días de garantía total. Si no es para ti, te devolvemos cada centavo. Lo único que puedes perder es la oportunidad de comprender por fin la Biblia.',
 'Política de Privacidade':'Política de privacidad',
@@ -154,6 +154,28 @@ def build():
             untouched.append(k)
     if untouched:
         raise ValueError(f'Untranslated text: {untouched}')
+    main['data-offer-usd'] = '9.90'
+    offer = main.select_one('#comprar')
+    item_values = [20, 15, 10, 8, 7]
+    assert sum(item_values) == 60
+    for value, row in zip(item_values, offer.select('ul > li')):
+        price = row.select_one('.line-through')
+        price.name = 's'
+        price['class'] = ['item-value', 'text-muted-foreground', 'line-through']
+        price['data-value-usd'] = str(value)
+        price.string = f'US${value},00'
+    total = offer.select_one('div.mt-6.flex.items-center.justify-between .line-through')
+    total.name = 's'
+    total['data-total-usd'] = '60'
+    total.string = 'US$60,00'
+    price_row = offer.select_one('p.tabular-nums')
+    price_parts = price_row.find_all('span', recursive=False)
+    price_parts[0].string = 'US$'
+    price_parts[1].string = '9'
+    price_parts[2].clear()
+    price_parts[2].append(BeautifulSoup('<span class="opacity-60">,</span>90', 'html.parser'))
+    conversion = BeautifulSoup('''<div class="local-price-box" aria-live="polite" aria-atomic="true"><p class="local-price-label">En tu moneda</p><p class="local-price" data-local-price data-price-state="loading">Calculando el equivalente en tu moneda…</p><p class="local-price-note">Valor aproximado según el tipo de cambio. El importe final se confirma al pagar.</p><p class="rate-attribution">Tipo de cambio: <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener noreferrer">ExchangeRate-API</a><span data-rate-date></span></p></div>''', 'html.parser')
+    price_row.insert_after(conversion)
     alt = ['Ebook Brote de Fe: portada digital en español','Los 73 libros de la Biblia: beneficios de Brote de Fe','Ejemplo de lectura: Génesis en español','Lectora con el ebook Brote de Fe en español']
     files = ['01-portada.webp','02-beneficios.webp','04-genesis.webp','03-lectura.webp']
     for i, img in enumerate(main.find_all('img')):
@@ -181,11 +203,11 @@ def build():
     h1.string = 'Brote de Fe — El camino de las 73 raíces'
     main.select_one('[data-section="hero"]').insert(0,h1)
     sticky = soup.new_tag('div',attrs={'class':'mobile-buy','aria-label':'Comprar Brote de Fe'})
-    sticky.append(BeautifulSoup('<div><strong>R$47,90</strong><small>Pago único · 7 días de garantía</small></div><a href="#comprar">QUIERO MI EBOOK <span aria-hidden="true">→</span></a>', 'html.parser'))
+    sticky.append(BeautifulSoup('<div><strong>US$9,90</strong><small>Pago único · 7 días de garantía</small></div><a href="#comprar">QUIERO MI EBOOK <span aria-hidden="true">→</span></a>', 'html.parser'))
     main.append(sticky)
     description = 'Comprende los 73 libros de la Biblia Católica con una guía devocional clara, breve y fiel a la Tradición.'
     head = f'''<!DOCTYPE html><html lang="es-419"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Brote de Fe — El camino de las 73 raíces</title><meta name="description" content="{description}"><meta name="theme-color" content="#0e2654"><link rel="preload" as="image" href="/assets/01-portada.webp"><link rel="stylesheet" href="/assets/styles.css"><link rel="stylesheet" href="/assets/localization.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><link rel="canonical" href="https://brote-de-fe-latam.chalkybox3.chatgpt.site/"><meta property="og:title" content="Brote de Fe — El camino de las 73 raíces"><meta property="og:description" content="{description}"><meta property="og:type" content="website"><meta property="og:locale" content="es_LA"><meta property="og:image" content="https://brote-de-fe-latam.chalkybox3.chatgpt.site/assets/01-portada.webp"><meta name="twitter:card" content="summary_large_image"></head><body>'''
-    (OUT/'index.html').write_text(head+str(main)+'<script src="/assets/app.js" defer></script></body></html>',encoding='utf-8')
+    (OUT/'index.html').write_text(head+str(main)+'<script src="/assets/app.js" defer></script><script type="module" src="/assets/local-price.mjs"></script></body></html>',encoding='utf-8')
     print('Built Spanish page: all original text nodes translated, 4 localized images, 6 FAQ answers.')
 
 if __name__ == '__main__':
