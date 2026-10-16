@@ -139,6 +139,7 @@ FAQ = [
 'No. Está escrito en un lenguaje claro y reverente para que cualquier persona pueda comprenderlo dedicando unos minutos al día.',
 ]
 
+IMG_SIZES = '(max-width: 480px) calc(100vw - 32px), 448px'
 CHECKOUT_URL = 'https://pay.hotmart.com/W107968094E?off=id8yz0yl&checkoutMode=10'
 
 def build():
@@ -183,11 +184,13 @@ def build():
     alt = ['Ebook Brote de Fe: portada digital en español','Los 73 libros de la Biblia: beneficios de Brote de Fe','Ejemplo de lectura: Génesis en español','Lectora con el ebook Brote de Fe en español']
     files = ['01-portada.webp','02-beneficios.webp','04-genesis.webp','03-lectura.webp']
     for i, img in enumerate(main.find_all('img')):
-        img['src'] = 'assets/' + files[i]
+        stem = files[i].removesuffix('.webp')
+        img['src'] = f'assets/{stem}-900.webp'
+        img['srcset'] = f'assets/{stem}-480.webp 480w, assets/{stem}-900.webp 900w'
+        img['sizes'] = IMG_SIZES
         img['alt'] = alt[i]
-        img.attrs.pop('srcset', None)
-        img['width'] = '1024'
-        img['height'] = '1024'
+        img['width'] = '900'
+        img['height'] = '900'
     for button in main.select('button.cta-pulse'):
         button.name = 'a'
         button.attrs.pop('type',None)
@@ -213,7 +216,7 @@ def build():
     sticky.append(BeautifulSoup('<div><strong>US$9,90</strong><small>Pago único · 7 días de garantía</small></div><a href="#comprar">QUIERO MI EBOOK <span aria-hidden="true">→</span></a>', 'html.parser'))
     main.append(sticky)
     description = 'Comprende los 73 libros de la Biblia Católica con una guía devocional clara, breve y fiel a la Tradición.'
-    head = f'''<!DOCTYPE html><html lang="es-419"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Brote de Fe — El camino de las 73 raíces</title><meta name="description" content="{description}"><meta name="theme-color" content="#0e2654"><link rel="preload" as="image" href="assets/01-portada.webp"><link rel="stylesheet" href="assets/styles.css"><link rel="stylesheet" href="assets/localization.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><link rel="canonical" href="https://brote-de-fe-latam.chalkybox3.chatgpt.site/"><meta property="og:title" content="Brote de Fe — El camino de las 73 raíces"><meta property="og:description" content="{description}"><meta property="og:type" content="website"><meta property="og:locale" content="es_LA"><meta property="og:image" content="https://brote-de-fe-latam.chalkybox3.chatgpt.site/assets/01-portada.webp"><meta name="twitter:card" content="summary_large_image"></head><body>'''
+    head = f'''<!DOCTYPE html><html lang="es-419"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Brote de Fe — El camino de las 73 raíces</title><meta name="description" content="{description}"><meta name="theme-color" content="#0e2654"><link rel="preload" as="image" href="assets/01-portada-900.webp" imagesrcset="assets/01-portada-480.webp 480w, assets/01-portada-900.webp 900w" imagesizes="{IMG_SIZES}"><link rel="stylesheet" href="assets/styles.css"><link rel="stylesheet" href="assets/localization.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><link rel="canonical" href="https://brote-de-fe-latam.chalkybox3.chatgpt.site/"><meta property="og:title" content="Brote de Fe — El camino de las 73 raíces"><meta property="og:description" content="{description}"><meta property="og:type" content="website"><meta property="og:locale" content="es_LA"><meta property="og:image" content="https://brote-de-fe-latam.chalkybox3.chatgpt.site/assets/01-portada.webp"><meta name="twitter:card" content="summary_large_image"></head><body>'''
     (OUT/'index.html').write_text(head+str(main)+'<script src="assets/app.js" defer></script><script type="module" src="assets/local-price.mjs"></script></body></html>',encoding='utf-8')
     print('Built Spanish page: all original text nodes translated, 4 localized images, 6 FAQ answers.')
 
