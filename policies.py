@@ -37,10 +37,10 @@ DATA = {
 }
 
 def build_policies():
-    nav = '<nav aria-label="Políticas" class="flex flex-wrap justify-center gap-4">' + ''.join(f'<a href="/politicas/{key}/">{escape(title)}</a>' for key,(title,_) in DATA.items()) + '</nav>'
+    nav = '<nav aria-label="Políticas" class="flex flex-wrap justify-center gap-4">' + ''.join(f'<a href="../{key}/">{escape(title)}</a>' for key,(title,_) in DATA.items()) + '</nav>'
     for key,(title,sections) in DATA.items():
         content = ''.join((f'<h2>{escape(heading)}</h2>' if heading else '') + ''.join('<p>'+escape(p).replace('suporte@brotodefe.com.br','<a href="mailto:suporte@brotodefe.com.br">suporte@brotodefe.com.br</a>')+'</p>' for p in body.split('\n')) for heading,body in sections)
-        page = f'''<!DOCTYPE html><html lang="es-419"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title} — Brote de Fe</title><link rel="stylesheet" href="/assets/styles.css"><link rel="stylesheet" href="/assets/localization.css"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"></head><body><main class="policy"><a href="/">← Brote de Fe</a><h1>{title}</h1><p class="updated">Última actualización: octubre de 2026</p>{content}<footer class="mt-10 border-t border-border py-8">{nav}<p class="text-center">© 2026 Brote de Fe</p></footer></main></body></html>'''
+        page = f'''<!DOCTYPE html><html lang="es-419"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title} — Brote de Fe</title><link rel="stylesheet" href="../../assets/styles.css"><link rel="stylesheet" href="../../assets/localization.css"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"></head><body><main class="policy"><a href="../../">← Brote de Fe</a><h1>{title}</h1><p class="updated">Última actualización: octubre de 2026</p>{content}<footer class="mt-10 border-t border-border py-8">{nav}<p class="text-center">© 2026 Brote de Fe</p></footer></main></body></html>'''
         dest = ROOT/'dist'/'politicas'/key
         dest.mkdir(parents=True,exist_ok=True)
         (dest/'index.html').write_text(page,encoding='utf-8')

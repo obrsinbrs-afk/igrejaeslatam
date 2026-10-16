@@ -35,6 +35,7 @@ document.querySelectorAll('[data-carousel]').forEach(carousel => {
     next.disabled = edge >= max - 3;
     const visible = cards.map((card, i) => ({ i, start: position(card), end: position(card) + card.offsetWidth }))
       .filter(card => card.start < edge + track.clientWidth - 6 && card.end > edge + 6);
+    if (!visible.length) return;
     const first = visible[0].i + 1;
     const last = visible[visible.length - 1].i + 1;
     status.textContent = first === last ? `Tarjeta ${first} de ${cards.length}` : `Tarjetas ${first}–${last} de ${cards.length}`;

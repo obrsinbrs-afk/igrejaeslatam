@@ -183,7 +183,7 @@ def build():
     alt = ['Ebook Brote de Fe: portada digital en español','Los 73 libros de la Biblia: beneficios de Brote de Fe','Ejemplo de lectura: Génesis en español','Lectora con el ebook Brote de Fe en español']
     files = ['01-portada.webp','02-beneficios.webp','04-genesis.webp','03-lectura.webp']
     for i, img in enumerate(main.find_all('img')):
-        img['src'] = '/assets/' + files[i]
+        img['src'] = 'assets/' + files[i]
         img['alt'] = alt[i]
         img.attrs.pop('srcset', None)
         img['width'] = '1024'
@@ -203,7 +203,7 @@ def build():
         panel.string = FAQ[i]
         button.insert_after(panel)
     for a in main.select('footer a'):
-        a['href'] = {'/politicas/privacidade':'/politicas/privacidad/','/politicas/termos':'/politicas/terminos/','/politicas/reembolso':'/politicas/reembolso/'}[a['href']]
+        a['href'] = {'/politicas/privacidade':'politicas/privacidad/','/politicas/termos':'politicas/terminos/','/politicas/reembolso':'politicas/reembolso/'}[a['href']]
     main.select_one('nav')['aria-label'] = 'Políticas'
     main.select_one('footer > div').append(BeautifulSoup('<p class="rate-credit">Cotizaciones de <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener noreferrer">ExchangeRate-API</a></p>', 'html.parser'))
     h1 = soup.new_tag('h1',attrs={'class':'sr-only'})
@@ -213,8 +213,8 @@ def build():
     sticky.append(BeautifulSoup('<div><strong>US$9,90</strong><small>Pago único · 7 días de garantía</small></div><a href="#comprar">QUIERO MI EBOOK <span aria-hidden="true">→</span></a>', 'html.parser'))
     main.append(sticky)
     description = 'Comprende los 73 libros de la Biblia Católica con una guía devocional clara, breve y fiel a la Tradición.'
-    head = f'''<!DOCTYPE html><html lang="es-419"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Brote de Fe — El camino de las 73 raíces</title><meta name="description" content="{description}"><meta name="theme-color" content="#0e2654"><link rel="preload" as="image" href="/assets/01-portada.webp"><link rel="stylesheet" href="/assets/styles.css"><link rel="stylesheet" href="/assets/localization.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><link rel="canonical" href="https://brote-de-fe-latam.chalkybox3.chatgpt.site/"><meta property="og:title" content="Brote de Fe — El camino de las 73 raíces"><meta property="og:description" content="{description}"><meta property="og:type" content="website"><meta property="og:locale" content="es_LA"><meta property="og:image" content="https://brote-de-fe-latam.chalkybox3.chatgpt.site/assets/01-portada.webp"><meta name="twitter:card" content="summary_large_image"></head><body>'''
-    (OUT/'index.html').write_text(head+str(main)+'<script src="/assets/app.js" defer></script><script type="module" src="/assets/local-price.mjs"></script></body></html>',encoding='utf-8')
+    head = f'''<!DOCTYPE html><html lang="es-419"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Brote de Fe — El camino de las 73 raíces</title><meta name="description" content="{description}"><meta name="theme-color" content="#0e2654"><link rel="preload" as="image" href="assets/01-portada.webp"><link rel="stylesheet" href="assets/styles.css"><link rel="stylesheet" href="assets/localization.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><link rel="canonical" href="https://brote-de-fe-latam.chalkybox3.chatgpt.site/"><meta property="og:title" content="Brote de Fe — El camino de las 73 raíces"><meta property="og:description" content="{description}"><meta property="og:type" content="website"><meta property="og:locale" content="es_LA"><meta property="og:image" content="https://brote-de-fe-latam.chalkybox3.chatgpt.site/assets/01-portada.webp"><meta name="twitter:card" content="summary_large_image"></head><body>'''
+    (OUT/'index.html').write_text(head+str(main)+'<script src="assets/app.js" defer></script><script type="module" src="assets/local-price.mjs"></script></body></html>',encoding='utf-8')
     print('Built Spanish page: all original text nodes translated, 4 localized images, 6 FAQ answers.')
 
 if __name__ == '__main__':
