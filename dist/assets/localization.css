@@ -1,0 +1,17 @@
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+button,a{-webkit-tap-highlight-color:transparent}
+a:focus-visible,button:focus-visible{outline:3px solid #a97d3a;outline-offset:5px}
+[hidden]{display:none!important}
+.mobile-buy{display:none}
+[data-section="faq"] button[aria-expanded="true"] svg{transform:rotate(180deg)}
+[data-section="hero"] img{aspect-ratio:1;object-fit:cover}
+@media(max-width:767px){
+ .mobile-buy{position:fixed;z-index:50;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:#fffdf9f5;border-top:1px solid #e3ddd3;box-shadow:0 -4px 22px #07183a14;backdrop-filter:blur(12px)}
+ .mobile-buy strong{display:block;color:#0e2654;font-size:21px;line-height:1.25}
+ .mobile-buy small{display:block;font-size:9px;color:#33435d}
+ .mobile-buy a{display:flex;align-items:center;gap:8px;justify-content:center;padding:13px 16px;border:1px solid #a97d3a;border-radius:30px;background:linear-gradient(135deg,#e2bf76,#bc863e);font-size:12px;font-weight:800;color:#07183a;white-space:nowrap}
+ .cta-pulse{padding-left:20px;padding-right:20px;font-size:16px;letter-spacing:.035em}
+ main{padding-bottom:100px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+.policy{max-width:850px;margin:0 auto;padding:48px 22px 64px}.policy h1{font-size:32px;color:#0e2654;margin:28px 0 12px}.policy h2{font-size:21px;color:#0e2654;margin:28px 0 10px}.policy p{margin:14px 0}.policy a{color:#946723;text-decoration:underline}.policy .updated{font-size:14px;color:#667085}
